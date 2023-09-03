@@ -47,3 +47,12 @@ def _size_hr(size, decimals=2):
 def _magnet_link(info_hash):
     base_magnet_link = "magnet:?xt=urn:btih:"
     return base_magnet_link + info_hash
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Search The Pirate Bay from the command line")
+    parser.add_argument("query", help="Search query (enclose in quotes if it contains spaces)")
+    args = parser.parse_args()
+
+    magnet = pick_torrent(args.query)
+    print(magnet)
