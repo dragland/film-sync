@@ -29,7 +29,7 @@ def pick_torrent(query):
     try:
         selection = input("Enter the index of the torrent you want to use, or 'n' to skip: ")
         if selection == 'n':
-            return
+            return "n"
         return _magnet_link(torrents[int(selection)]['info_hash'])
     except (ValueError, IndexError):
         print("Invalid index. Please enter a valid index.")
