@@ -11,7 +11,10 @@ config.read('config.ini')
 
 
 def main():
-    library = get_library(config.get('URLS', 'plex_url'), config.get('API_KEYS', 'plex_token'))
+    library = get_library(
+        config.get('URLS', 'plex_url'),
+        config.get('API_KEYS', 'plex_token')
+    )
     watchlist = get_watchlist(config.get('URLS', 'watchlist_url'))
 
     todo = watchlist - library
@@ -22,7 +25,12 @@ def main():
         if not magnet:
             magnet = pick_torrent(f"{film[0]} {film[1]}")
         if magnet and magnet != "n":
-            add_magnet_link(config.get('URLS', 'qb_url'), config.get('API_KEYS', 'qb_username', config.get('API_KEYS'), 'qb_password'), magnet)
+            add_magnet_link(
+                config.get('URLS', 'qb_url'),
+                config.get('API_KEYS', 'qb_username'),
+                config.get('API_KEYS', 'qb_password'),
+                magnet
+            )
 
 
 if __name__ == "__main__":
