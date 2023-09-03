@@ -33,14 +33,14 @@ def get_watchlist(url):
     urls = []
     page = 1
     while True:
-        print(page)
         page_urls = scrape_urls(url, page)
         if not page_urls:
             break
         urls.extend(page_urls)
         page += 1
+    print(f"You have {len(urls)} films on your watchlist")
 
-    print("Extracking film titles & years...")
+    print("Extracting film titles & years...")
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         films = set(executor.map(scrape_info, urls))
     return films
