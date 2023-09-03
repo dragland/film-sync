@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 import argparse
+import configparser
 import requests
+from torrent import add_magnet_link
+
+
+config = configparser.ConfigParser()
+config.read('config.ini')
 
 
 def search_tpb(query):
@@ -35,6 +41,17 @@ def pick_torrent(query):
         print("Invalid index. Please enter a valid index.")
 
 
+def download_torrent(query):
+    magnet = pick_torrent(query)
+    if magnet and magnet != "n":
+        add_magnet_link(
+            config.get('URLS', 'qb_url'),
+            config.get('API_KEYS', 'qb_username'),
+            config.get('API_KEYS', 'qb_password'),
+            magnet
+        )
+
+
 def _size_hr(size, decimals=2):
     size = float(size)
     for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
@@ -54,5 +71,4 @@ if __name__ == "__main__":
     parser.add_argument("query", help="Search query (enclose in quotes if it contains spaces)")
     args = parser.parse_args()
 
-    magnet = pick_torrent(args.query)
-    print(magnet)
+    download_torrent(args.query)
