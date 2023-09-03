@@ -13,5 +13,7 @@ def add_magnet_link(url, username, password, magnet):
         headers={"Cookie": f"SID={auth_cookie}"},
         data={"urls": magnet}
     )
-    if add_response.status_code != 200:
-        print("Error adding magnet link:", add_response.text)
+    if add_response.status_code == 200:
+        print(f"{url}: Succesfully queued {magnet}")
+    else:
+        print(f"Error queing {magnet}:", add_response.text)
