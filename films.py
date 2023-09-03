@@ -15,7 +15,7 @@ def main():
         config.get('URLS', 'plex_url'),
         config.get('API_KEYS', 'plex_token')
     )
-    watchlist = get_watchlist(config.get('URLS', 'watchlist_url'))
+    watchlist = get_watchlist(config.get('URLS', 'letterboxd_username'))
 
     todo = watchlist - library
     print(f"You still are missing {len(todo)} films")

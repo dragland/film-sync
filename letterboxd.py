@@ -28,8 +28,10 @@ def scrape_urls(base, page):
     return page_urls
 
 
-def get_watchlist(url):
-    print("Reading letterboxd watchlist...")
+def get_watchlist(profile):
+    url = f"https://letterboxd.com/{profile}/watchlist"
+    # watchlist_url = f"https://letterboxd.com/{profile}/likes/films"
+    print(f"Querying letterboxd watchlist for @{profile}...")
     urls = []
     page = 1
     while True:
