@@ -26,3 +26,21 @@ def scrape_urls(base, page):
     posters = soup.find_all(class_='poster-container')
     page_urls = [f"https://letterboxd.com{poster.find('div')['data-target-link']}" for poster in posters]
     return page_urls
+
+
+def get_watchlist(url):
+    print("Reading letterboxd watchlist...")
+    urls = []
+    page = 1
+    while True:
+        print(page)
+        page_urls = scrape_urls(url, page)
+        if not page_urls:
+            break
+        urls.extend(page_urls)
+        page += 1
+
+    print("Extracking film titles & years...")
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        films = set(executor.map(scrape_info, urls))
+    return films
