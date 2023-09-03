@@ -17,3 +17,12 @@ def scrape_info(url):
     except AttributeError:
         year = None
     return title, year
+
+
+def scrape_urls(base, page):
+    response = session.get(f"{base}/page/{page}/")
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    posters = soup.find_all(class_='poster-container')
+    page_urls = [f"https://letterboxd.com{poster.find('div')['data-target-link']}" for poster in posters]
+    return page_urls
