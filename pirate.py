@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-
-
 import argparse
 import requests
 
@@ -28,6 +26,8 @@ def pick_torrent(query):
 
     for n, t in enumerate(torrents):
         print(f"{n}) ({_size_hr(t['size'])})\'{t['name']}\'[{t['username']}], Seeds:{t['seeders']}, Leeches:{t['leechers']}: {_magnet_link(t['info_hash'])}")
+    if len(torrents) == 1:
+        return _magnet_link(torrents[0]['info_hash'])
     try:
         i = int(input("Enter the index of the torrent you want to use: "))
         return _magnet_link(torrents[i]['info_hash'])
