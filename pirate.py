@@ -18,3 +18,17 @@ def search_tpb(query):
         return response.json()
     else:
         print("Error querying TPB API:", response.status_code)
+
+
+def _size_hr(size, decimals=2):
+    size = float(size)
+    for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
+        if size < 1024.0:
+            break
+        size /= 1024.0
+    return f"{size:.{decimals}f}{unit}"
+
+
+def _magnet_link(info_hash):
+    base_magnet_link = "magnet:?xt=urn:btih:"
+    return base_magnet_link + info_hash
