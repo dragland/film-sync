@@ -26,7 +26,7 @@ def search_tpb(query):
 
 def pick_torrent(query):
     torrents = search_tpb(query)
-    if torrents[0]['name'] == 'No results returned':
+    if torrents is None:
         print("No torrents found :(")
         return
 
