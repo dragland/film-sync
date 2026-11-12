@@ -2,7 +2,7 @@
 Synchronization utility from letterboxd watchlist --> Plex server
 
 ## Usage
-First, update `config.ini` with your local urls & auth keys.
+First, `cp config.example.ini config.ini` and fill in your local urls & auth keys.
 
 ```bash
 $ ./pirate.py "Metropolis 1927 1080p"
