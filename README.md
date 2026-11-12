@@ -1,5 +1,5 @@
 # film-sync
-Synchronization utility from letterboxd watchlist --> Plex server
+Synchronization utility from letterboxd watchlist --> Jellyfin server
 
 ## Usage
 First, `cp config.example.ini config.ini` and fill in your local urls & auth keys.

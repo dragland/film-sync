@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import configparser
-from plex import get_library
+from jellyfin import get_library
 from letterboxd import get_watchlist
 from pirate import pick_torrent
 from torrent import add_magnet_link
@@ -12,8 +12,8 @@ config.read('config.ini')
 
 def main():
     library = get_library(
-        config.get('URLS', 'plex_url'),
-        config.get('API_KEYS', 'plex_token')
+        config.get('URLS', 'jellyfin_url'),
+        config.get('API_KEYS', 'jellyfin_api_key')
     )
     watchlist = get_watchlist(config.get('URLS', 'letterboxd_username'))
 
